@@ -1,0 +1,21 @@
+@import './beam_sass/beam'
+
+main
+  @include row-centered
+
+.items
+  display: flex
+  flex-direction: column
+  justify-content: flex-end
+  align-items: stretch
+  text-align: center
+
+.item
+  @include row-centered
+  padding: 5px 10px
+  font-size: 18px
+  border: black 3px solid
+  border-radius: 16px
+  min-height: 50px
+  min-width: 150px
+  max-width: 250px
