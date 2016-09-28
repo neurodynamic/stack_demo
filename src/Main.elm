@@ -1,7 +1,7 @@
 module Main exposing (..)
 
 import Html exposing (h1, text)
-import Layout.Base exposing (layout)
+import Components.Layout.Base exposing (layout)
 
 
 main =

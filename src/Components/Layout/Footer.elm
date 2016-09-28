@@ -1,4 +1,4 @@
-module Layout.Footer exposing (..)
+module Components.Layout.Footer exposing (..)
 
 import Html exposing (Html, div, footer, a, i, text)
 import Html.Attributes exposing (style, class, href)
