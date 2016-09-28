@@ -1,0 +1,32 @@
+@import '../styles/beam_sass/beam'
+
+body
+  margin: 0
+  padding: 0
+
+.page-flexbox-wrapper
+  display: flex
+  min-height: 100vh
+  flex-direction: column
+
+main
+  @include responsive-margin
+  flex: 1 1 auto
+
+header
+  @include row-spread
+
+footer
+  @include row-centered
+  text-align: center
+
+  a
+    text-decoration: none
+    transition: 0.3
+
+    &:hover
+      opacity: 0.5
+
+  i.fa
+    font-size: 30px
+    margin: 5px

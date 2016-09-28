@@ -1,0 +1,106 @@
+@import '../variables'
+
+//- Form Parts
+
+fieldset
+  margin: 10px
+  padding: 30px
+
+  border: 1px lightgray solid
+  border-radius: 10px
+
+  & > legend
+    padding: 0px 15px
+    margin-left: 30px
+
+    font-size: 24px
+
+
+//- User Inputs
+label
+  font-size: 17px
+
+input, textarea
+  display: inline-block
+  padding: 10px
+  margin: 10px 5px
+
+  font-size: 17px
+
+  border-radius: 6px
+  border: 2px rgba($color-neutral, 0.7) solid
+
+  transition: 0.3s
+
+  &:focus
+    transition: all .2s ease-in
+    border: 2px solid $color-standard
+    background-color: rgba($color-standard, 0.1)
+    outline: none
+
+  &:disabled
+    cursor: not-allowed
+    background-color: rgba($color-neutral, 0.25)
+
+  &:required:focus
+    border: 2px solid $color-warning
+    background-color: rgba($color-warning, 0.1)
+
+  &.input--invalid
+    border: 2px solid $color-danger
+    background-color: rgba($color-danger, 0.2)
+
+    &:focus
+      border: 2px solid $color-danger
+      background-color: rgba($color-danger, 0.1)
+
+  &.input--valid
+    border: 2px solid $color-approval
+    background-color: rgba($color-approval, 0.2)
+
+    &:focus
+      border: 2px solid $color-approval
+      background-color: rgba($color-approval, 0.1)
+
+
+textarea
+  resize: none
+  min-height: 90px
+
+
+input[type=file],
+label,
+select
+  cursor: pointer
+
+//- Files
+
+input[type=file]
+  border: none
+  background-color: rgba($color-neutral, 0.3)
+  font-size: 18px
+
+//- Selects
+
+select
+  height: 40px
+  width: 100%
+  
+  font-size: 17px
+
+  background-color: white
+  
+  &:focus
+    border: 1px solid $color-standard
+    outline: none
+
+  &:focus:-moz-focusring
+    color: transparent
+    text-shadow: 0 0 0 #000
+  
+//- Radio and Checkbox
+
+input[type=checkbox], 
+input[type=radio]
+  display: inline-block
+  margin-right: 10px

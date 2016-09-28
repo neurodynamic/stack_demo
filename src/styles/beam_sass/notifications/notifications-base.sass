@@ -1,0 +1,31 @@
+@import '../variables'
+
+.notification
+  padding: 7px 15px 
+  margin: 5px auto
+  width: 90%
+
+  color: $color-standard-shadow
+  text-align: center
+  font-size: 23px
+
+  background-color: rgba($color-standard, 0.25)
+  border-radius: 5px
+  
+
+  &.notification--success
+    color: $color-approval-shadow
+
+    background-color: rgba($color-approval, 0.25)
+    
+
+  &.notification--warning
+    color: $color-warning-shadow
+
+    background-color: rgba($color-warning, 0.25)
+    
+
+  &.notification--danger
+    color: $color-danger-shadow
+
+    background-color: rgba($color-danger, 0.25)

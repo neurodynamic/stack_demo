@@ -1,0 +1,64 @@
+@import '../variables'
+
+$button-margin-vertical: 5px
+
+button, .btn
+  display: inline-block
+  margin: $button-margin-vertical 3px
+  padding: 5px 10px
+  
+  text-align: center
+  vertical-align: middle
+  text-decoration: none
+  color: white
+  font-size: 17px
+  
+  background-color: $color-neutral
+  border: none
+  border-bottom: 4px solid $color-neutral-shadow
+  border-radius: 4px
+  cursor: pointer
+
+  &:hover
+    margin-top: $button-margin-vertical + 1px
+    border-bottom: 3px solid $color-neutral-shadow
+    
+  &:focus
+    outline: none
+    background-color: darken($color-neutral-shadow, 15)
+
+  &:active
+    margin-top: $button-margin-vertical + 3px
+    border-bottom: 1px solid $color-neutral-shadow
+
+
+  &.btn--small, &.btn--sm
+    padding: 4px 8px
+    font-size: 15px
+
+  &.btn--large, &.btn--lg
+    padding: 7px 14px
+    font-size: 20px
+
+  &.btn--extra-large, &.btn--xl
+    padding: 10px 20px
+    font-size: 26px
+
+
+  &.btn--standard
+    background-color: $color-standard
+    border-bottom-color: $color-standard-shadow
+    &:focus
+      background-color: darken($color-standard-shadow, 15)
+
+  &.btn--approval
+    background-color: $color-approval
+    border-bottom-color: $color-approval-shadow
+    &:focus
+      background-color: darken($color-approval-shadow, 15)
+
+  &.btn--danger
+    background-color: $color-danger
+    border-bottom-color: $color-danger-shadow
+    &:focus
+      background-color: darken($color-danger-shadow, 15)
