@@ -2,6 +2,7 @@ module Components.Update exposing (..)
 
 import List exposing (..)
 import Task exposing (..)
+import Time exposing (second)
 import Animation exposing (px)
 import Components.Msg exposing (..)
 import Components.Model exposing (..)
@@ -20,7 +21,14 @@ update msg model =
             ( { model
                 | items = model.inputValue :: model.items
                 , inputValue = ""
-                , topItemStyle = Animation.style [ Animation.height (px 50.0), Animation.opacity 0.0 ]
+                , topItemStyle =
+                    Animation.styleWith
+                        (Animation.spring
+                            { stiffness = 600
+                            , damping = 35
+                            }
+                        )
+                        [ Animation.height (px 0.0), Animation.opacity 0.0 ]
               }
             , fadeInNewItem
             )
@@ -31,8 +39,11 @@ update msg model =
         FadeInNewItem ->
             let
                 newStyle =
-                    Animation.interrupt
+                    Animation.queue
                         [ Animation.to
+                            [ Animation.height (px 40.0)
+                            ]
+                        , Animation.to
                             [ Animation.opacity 1.0
                             ]
                         ]
