@@ -8,4 +8,5 @@ type Msg
     | NewInputValue String
     | Push
     | Pop
+    | FadeInNewItem
     | Animate Animation.Msg
