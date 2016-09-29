@@ -16,7 +16,7 @@ initialModel =
     , inputValue = "Fourth"
     , topItemStyle =
         Animation.style
-            [ Animation.height (px 50.0)
+            [ Animation.height (px 40.0)
             , Animation.opacity 1.0
             ]
     }
