@@ -3,6 +3,7 @@ module Components.View exposing (..)
 import Html exposing (..)
 import Html.Attributes exposing (..)
 import Html.Events exposing (..)
+import Animation
 import Components.Model exposing (Model)
 import Components.Msg exposing (..)
 import Components.Layout.Base exposing (layout)
@@ -12,7 +13,7 @@ view : Model -> Html Msg
 view model =
     layout
         [ div [] [ pushForm model.inputValue, popForm ]
-        , stack model.items
+        , stack model
         ]
 
 
@@ -34,20 +35,24 @@ pushForm inputValue =
         ]
 
 
-stack : List String -> Html Msg
-stack items =
-    div [ class "items" ] ((h3 [] [ text "stack" ]) :: (itemList items))
+stack : Model -> Html Msg
+stack model =
+    div [ class "items" ] ((h3 [] [ text "stack" ]) :: (itemList model))
 
 
-itemList : List String -> List (Html Msg)
-itemList items =
-    List.map stringToTopItemDiv (List.take 1 items)
-        ++ List.map stringToItemDiv (List.drop 1 items)
+itemList : Model -> List (Html Msg)
+itemList model =
+    List.map (stringToTopItemDiv (model.topItemStyle)) (List.take 1 model.items)
+        ++ List.map stringToItemDiv (List.drop 1 model.items)
 
 
-stringToTopItemDiv : String -> Html Msg
-stringToTopItemDiv str =
-    div [ class "item top-item" ] [ text str ]
+stringToTopItemDiv : Animation.State -> String -> Html Msg
+stringToTopItemDiv topItemStyle str =
+    let
+        properties =
+            [ class "item top-item" ] ++ Animation.render topItemStyle
+    in
+        div properties [ text str ]
 
 
 stringToItemDiv : String -> Html Msg

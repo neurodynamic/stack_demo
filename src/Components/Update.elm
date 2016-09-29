@@ -1,6 +1,7 @@
 module Components.Update exposing (..)
 
 import List exposing (..)
+import Animation
 import Components.Msg exposing (..)
 import Components.Model exposing (..)
 
@@ -15,7 +16,10 @@ update msg model =
             ( { model | inputValue = str }, Cmd.none )
 
         Push ->
-            ( { items = model.inputValue :: model.items, inputValue = "" }, Cmd.none )
+            ( { model | items = model.inputValue :: model.items, inputValue = "" }, Cmd.none )
 
         Pop ->
             ( { model | items = Maybe.withDefault [] (tail model.items) }, Cmd.none )
+
+        Animate animationMsg ->
+            ( { model | topItemStyle = Animation.update animationMsg model.topItemStyle }, Cmd.none )
