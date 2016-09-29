@@ -53,7 +53,16 @@ update msg model =
                 )
 
         Pop ->
-            ( { model | items = Maybe.withDefault [] (tail model.items) }, Cmd.none )
+            ( { model
+                | items = Maybe.withDefault [] (tail model.items)
+                , topItemStyle =
+                    Animation.style
+                        [ Animation.height (px 40.0)
+                        , Animation.opacity 1.0
+                        ]
+              }
+            , Cmd.none
+            )
 
         FadeOutTopItem ->
             let
@@ -76,7 +85,11 @@ update msg model =
                 )
 
         Animate animationMsg ->
-            ( { model | topItemStyle = Animation.update animationMsg model.topItemStyle }, Cmd.none )
+            let
+                ( style, command ) =
+                    Animation.Messenger.update animationMsg model.topItemStyle
+            in
+                ( { model | topItemStyle = style }, command )
 
 
 fadeInNewItem : Cmd Msg
