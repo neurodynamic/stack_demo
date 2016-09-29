@@ -19,7 +19,7 @@ view model =
 popForm : Html Msg
 popForm =
     Html.form [ class "method-form", onSubmit Pop ]
-        [ text "pop()"
+        [ text "myStack.pop()"
         , button [] [ text "call" ]
         ]
 
@@ -27,7 +27,7 @@ popForm =
 pushForm : String -> Html Msg
 pushForm inputValue =
     Html.form [ class "method-form", onSubmit Push ]
-        [ text "push("
+        [ text "myStack.push("
         , input [ class "method-input", onInput NewInputValue, value inputValue ] []
         , text ")"
         , button [] [ text "call" ]
@@ -36,7 +36,7 @@ pushForm inputValue =
 
 items : List String -> Html Msg
 items list =
-    div [ class "items" ] (List.map stringToBox list)
+    div [ class "items" ] ((h3 [] [ text "myStack" ]) :: (List.map stringToBox list))
 
 
 stringToBox : String -> Html Msg
