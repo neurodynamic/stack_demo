@@ -1,5 +1,6 @@
 module Components.Update exposing (..)
 
+import List exposing (..)
 import Components.Msg exposing (..)
 import Components.Model exposing (..)
 
@@ -15,3 +16,6 @@ update msg model =
 
         Push ->
             ( { items = model.inputValue :: model.items, inputValue = "" }, Cmd.none )
+
+        Pop ->
+            ( { model | items = Maybe.withDefault [] (tail model.items) }, Cmd.none )

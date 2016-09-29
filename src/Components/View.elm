@@ -11,16 +11,24 @@ import Components.Layout.Base exposing (layout)
 view : Model -> Html Msg
 view model =
     layout
-        [ pushForm model.inputValue
+        [ div [] [ pushForm model.inputValue, popForm ]
         , items model.items
+        ]
+
+
+popForm : Html Msg
+popForm =
+    Html.form [ class "method-form", onSubmit Pop ]
+        [ text "pop()"
+        , button [] [ text "call" ]
         ]
 
 
 pushForm : String -> Html Msg
 pushForm inputValue =
-    Html.form [ class "push-form", onSubmit Push ]
+    Html.form [ class "method-form", onSubmit Push ]
         [ text "push("
-        , input [ class "push-input", onInput NewInputValue, value inputValue ] []
+        , input [ class "method-input", onInput NewInputValue, value inputValue ] []
         , text ")"
         , button [] [ text "call" ]
         ]
