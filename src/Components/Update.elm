@@ -2,8 +2,8 @@ module Components.Update exposing (..)
 
 import List exposing (..)
 import Task exposing (..)
-import Time exposing (second)
 import Animation exposing (px)
+import Animation.Messenger
 import Components.Msg exposing (..)
 import Components.Model exposing (..)
 
@@ -33,9 +33,6 @@ update msg model =
             , fadeInNewItem
             )
 
-        Pop ->
-            ( { model | items = Maybe.withDefault [] (tail model.items) }, Cmd.none )
-
         FadeInNewItem ->
             let
                 newStyle =
@@ -55,9 +52,38 @@ update msg model =
                 , Cmd.none
                 )
 
+        Pop ->
+            ( { model | items = Maybe.withDefault [] (tail model.items) }, Cmd.none )
+
+        FadeOutTopItem ->
+            let
+                newStyle =
+                    Animation.queue
+                        [ Animation.to
+                            [ Animation.opacity 0.0
+                            ]
+                        , Animation.to
+                            [ Animation.height (px 0.0)
+                            ]
+                        , Animation.Messenger.send Pop
+                        ]
+                        model.topItemStyle
+            in
+                ( { model
+                    | topItemStyle = newStyle
+                  }
+                , Cmd.none
+                )
+
         Animate animationMsg ->
             ( { model | topItemStyle = Animation.update animationMsg model.topItemStyle }, Cmd.none )
 
 
+fadeInNewItem : Cmd Msg
 fadeInNewItem =
     Task.perform (\_ -> Debug.crash "This failure cannot happen.") identity (Task.succeed FadeInNewItem)
+
+
+removeTopItem : Cmd Msg
+removeTopItem =
+    Task.perform (\_ -> Debug.crash "This failure cannot happen.") identity (Task.succeed Pop)

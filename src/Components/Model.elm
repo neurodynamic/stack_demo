@@ -1,12 +1,14 @@
 module Components.Model exposing (..)
 
+import Components.Msg exposing (..)
 import Animation exposing (px)
+import Animation.Messenger
 
 
 type alias Model =
     { items : List String
     , inputValue : String
-    , topItemStyle : Animation.State
+    , topItemStyle : Animation.Messenger.State Msg
     }
 
 

@@ -9,4 +9,5 @@ type Msg
     | Push
     | Pop
     | FadeInNewItem
+    | FadeOutTopItem
     | Animate Animation.Msg

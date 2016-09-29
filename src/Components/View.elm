@@ -19,7 +19,7 @@ view model =
 
 popForm : Html Msg
 popForm =
-    Html.form [ class "method-form", onSubmit Pop ]
+    Html.form [ class "method-form", onSubmit FadeOutTopItem ]
         [ text "stack.pop()"
         , button [] [ text "call" ]
         ]
