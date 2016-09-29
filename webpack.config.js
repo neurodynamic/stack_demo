@@ -103,7 +103,13 @@ if ( TARGET_ENV === 'production' ) {
 
   module.exports = merge( commonConfig, {
 
-    entry: path.join( __dirname, 'src/index.js' ),
+    entry: {
+      app: [
+        path.join( __dirname, 'src/index.js' )
+      ],
+      styles: glob.sync('./**/*.sass')
+    },
+
 
     module: {
       loaders: [
