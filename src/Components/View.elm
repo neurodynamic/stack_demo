@@ -4,6 +4,7 @@ import Html exposing (..)
 import Html.Attributes exposing (..)
 import Html.Events exposing (..)
 import Animation
+import Animation.Messenger
 import Components.Model exposing (Model)
 import Components.Msg exposing (..)
 import Components.Layout.Base exposing (layout)
@@ -46,7 +47,7 @@ itemList model =
         ++ List.map stringToItemDiv (List.drop 1 model.items)
 
 
-stringToTopItemDiv : Animation.State -> String -> Html Msg
+stringToTopItemDiv : Animation.Messenger.State Msg -> String -> Html Msg
 stringToTopItemDiv topItemStyle str =
     let
         properties =

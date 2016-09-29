@@ -1,6 +1,7 @@
 module Components.Model exposing (..)
 
 import Components.Msg exposing (..)
+import Components.ItemStyles exposing (..)
 import Animation exposing (px)
 import Animation.Messenger
 
@@ -17,8 +18,5 @@ initialModel =
     { items = [ "Third", "Second", "First" ]
     , inputValue = "Fourth"
     , topItemStyle =
-        Animation.style
-            [ Animation.height (px 40.0)
-            , Animation.opacity 1.0
-            ]
+        Animation.style (visible ++ expanded)
     }

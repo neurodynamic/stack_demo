@@ -6,6 +6,7 @@ import Animation exposing (px)
 import Animation.Messenger
 import Components.Msg exposing (..)
 import Components.Model exposing (..)
+import Components.ItemStyles exposing (..)
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )
@@ -28,7 +29,7 @@ update msg model =
                             , damping = 35
                             }
                         )
-                        [ Animation.height (px 0.0), Animation.opacity 0.0 ]
+                        (invisible ++ collapsed)
               }
             , fadeInNewItem
             )
@@ -37,12 +38,8 @@ update msg model =
             let
                 newStyle =
                     Animation.queue
-                        [ Animation.to
-                            [ Animation.height (px 40.0)
-                            ]
-                        , Animation.to
-                            [ Animation.opacity 1.0
-                            ]
+                        [ Animation.to expanded
+                        , Animation.to visible
                         ]
                         model.topItemStyle
             in
@@ -56,10 +53,7 @@ update msg model =
             ( { model
                 | items = Maybe.withDefault [] (tail model.items)
                 , topItemStyle =
-                    Animation.style
-                        [ Animation.height (px 40.0)
-                        , Animation.opacity 1.0
-                        ]
+                    Animation.style (visible ++ expanded)
               }
             , Cmd.none
             )
@@ -68,12 +62,8 @@ update msg model =
             let
                 newStyle =
                     Animation.queue
-                        [ Animation.to
-                            [ Animation.opacity 0.0
-                            ]
-                        , Animation.to
-                            [ Animation.height (px 0.0)
-                            ]
+                        [ Animation.to invisible
+                        , Animation.to collapsed
                         , Animation.Messenger.send Pop
                         ]
                         model.topItemStyle
