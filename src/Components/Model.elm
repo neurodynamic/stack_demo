@@ -10,5 +10,5 @@ type alias Model =
 initialModel : Model
 initialModel =
     { items = [ "Third", "Second", "First" ]
-    , inputValue = ""
+    , inputValue = "Fourth"
     }
