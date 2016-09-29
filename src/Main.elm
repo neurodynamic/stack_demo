@@ -1,7 +1,5 @@
 module Main exposing (..)
 
-import Html exposing (..)
-import Html.Attributes exposing (..)
 import Html.App exposing (program)
 import Components.View exposing (view)
 import Components.Model exposing (initialModel)
