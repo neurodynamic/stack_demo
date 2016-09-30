@@ -2,7 +2,7 @@
 
 Basic demo of stack data structure.
 
-[Live site](stackdemo.surge.sh)
+[Live site](http://stackdemo.surge.sh/)
 
 ## Resources Used
 - The Elm Style Animation package ([repo](https://github.com/mdgriffith/elm-style-animation), [Elm Packages page](http://package.elm-lang.org/packages/mdgriffith/elm-style-animation/3.1.0/))
