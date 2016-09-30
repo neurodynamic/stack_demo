@@ -44,7 +44,7 @@ update msg model =
 
         Pop ->
             ( { model
-                | items = Maybe.withDefault [] (tail model.items)
+                | items = List.drop 1 model.items
                 , topItemStyle =
                     Animation.style (visible ++ expanded)
               }
