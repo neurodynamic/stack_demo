@@ -6,7 +6,7 @@ import Html.Attributes exposing (style, class, href)
 
 render =
     footer []
-        [ a [ href "https://www.github.com" ]
+        [ a [ href "https://github.com/neurodynamic/stack_demo" ]
             [ div [] [ githubIcon ]
             , div [] [ text "source on github" ]
             ]
