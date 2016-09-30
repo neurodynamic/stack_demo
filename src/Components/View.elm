@@ -6,7 +6,7 @@ import Html.Events exposing (..)
 import Animation
 import Animation.Messenger
 import Components.Model exposing (Model)
-import Components.Msg exposing (..)
+import Components.Messages exposing (..)
 import Components.Layout.Base exposing (layout)
 
 

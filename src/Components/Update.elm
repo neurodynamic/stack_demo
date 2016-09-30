@@ -4,7 +4,7 @@ import List exposing (..)
 import Task exposing (..)
 import Animation exposing (px)
 import Animation.Messenger
-import Components.Msg exposing (..)
+import Components.Messages exposing (..)
 import Components.Model exposing (..)
 import Components.ItemStyles exposing (..)
 
