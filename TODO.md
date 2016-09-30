@@ -1,5 +1,1 @@
-- implement pop
 - implement peek
-- Animate item addition/subtraction with: elm-style-animation
-  - package repo: https://github.com/mdgriffith/elm-style-animation
-  - close example: https://github.com/mdgriffith/elm-style-animation/blob/master/examples/Showcase.elm
