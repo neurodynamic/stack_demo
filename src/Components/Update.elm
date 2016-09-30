@@ -21,6 +21,7 @@ update msg model =
         Push ->
             ( { model
                 | items = model.inputValue :: model.items
+                , popping = []
                 , inputValue = ""
                 , topItemStyle = hiddenStyle
               }
@@ -45,10 +46,11 @@ update msg model =
         Pop ->
             ( { model
                 | items = List.drop 1 model.items
-                , topItemStyle =
-                    Animation.style (visible ++ expanded)
+                , popping = List.take 1 model.items
+                , inputValue = ""
+                , topItemStyle = visibleStyle
               }
-            , Cmd.none
+            , fadeOutTopItem
             )
 
         FadeOutTopItem ->
@@ -57,7 +59,6 @@ update msg model =
                     Animation.queue
                         [ Animation.to invisible
                         , Animation.to collapsed
-                        , Animation.Messenger.send Pop
                         ]
                         model.topItemStyle
             in
@@ -78,6 +79,11 @@ update msg model =
 fadeInNewItem : Cmd Msg
 fadeInNewItem =
     Task.perform (\_ -> Debug.crash "This failure cannot happen.") identity (Task.succeed FadeInNewItem)
+
+
+fadeOutTopItem : Cmd Msg
+fadeOutTopItem =
+    Task.perform (\_ -> Debug.crash "This failure cannot happen.") identity (Task.succeed FadeOutTopItem)
 
 
 removeTopItem : Cmd Msg

@@ -20,7 +20,7 @@ view model =
 
 popForm : Html Msg
 popForm =
-    Html.form [ class "method-form", onSubmit FadeOutTopItem ]
+    Html.form [ class "method-form", onSubmit Pop ]
         [ text "stack.pop()"
         , button [] [ text "call" ]
         ]
@@ -43,8 +43,12 @@ stack model =
 
 itemList : Model -> List (Html Msg)
 itemList model =
-    List.map (stringToTopItemDiv (model.topItemStyle)) (List.take 1 model.items)
-        ++ List.map stringToItemDiv (List.drop 1 model.items)
+    if List.isEmpty model.popping then
+        List.map (stringToTopItemDiv (model.topItemStyle)) (List.take 1 model.items)
+            ++ List.map stringToItemDiv (List.drop 1 model.items)
+    else
+        List.map (stringToTopItemDiv (model.topItemStyle)) (model.popping)
+            ++ List.map stringToItemDiv model.items
 
 
 stringToTopItemDiv : Animation.Messenger.State Msg -> String -> Html Msg

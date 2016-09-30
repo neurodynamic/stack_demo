@@ -1,5 +1,6 @@
 module Utils.ItemStyles exposing (..)
 
+import Time exposing (millisecond)
 import Animation exposing (px)
 import Animation.Messenger
 import Components.Messages exposing (..)

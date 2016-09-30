@@ -8,6 +8,7 @@ import Animation.Messenger
 
 type alias Model =
     { items : List String
+    , popping : List String
     , inputValue : String
     , topItemStyle : Animation.Messenger.State Msg
     }
@@ -16,6 +17,7 @@ type alias Model =
 initialModel : Model
 initialModel =
     { items = [ "Third", "Second", "First" ]
+    , popping = []
     , inputValue = "Fourth"
     , topItemStyle =
         Animation.style (visible ++ expanded)
