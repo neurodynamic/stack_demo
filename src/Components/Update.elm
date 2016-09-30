@@ -4,9 +4,9 @@ import List exposing (..)
 import Task exposing (..)
 import Animation exposing (px)
 import Animation.Messenger
-import Components.Msg exposing (..)
+import Components.Messages exposing (..)
 import Components.Model exposing (..)
-import Components.ItemStyles exposing (..)
+import Utils.ItemStyles exposing (..)
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )
@@ -18,18 +18,17 @@ update msg model =
         NewInputValue str ->
             ( { model | inputValue = str }, Cmd.none )
 
+        Clean ->
+            case model.animatingAction of
+                None -> ( model, Cmd.none )
+                Pop -> ( model | animatingAction = None, Cmd.none )
+                Push -> ( model | items = model.animatingItem :: model.items, animatingAction = None, Cmd.none )
+
         Push ->
             ( { model
                 | items = model.inputValue :: model.items
                 , inputValue = ""
-                , topItemStyle =
-                    Animation.styleWith
-                        (Animation.spring
-                            { stiffness = 600
-                            , damping = 35
-                            }
-                        )
-                        (invisible ++ collapsed)
+                , topItemStyle = visibleStyle
               }
             , fadeInNewItem
             )

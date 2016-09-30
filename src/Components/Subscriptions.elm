@@ -1,7 +1,7 @@
 module Components.Subscriptions exposing (..)
 
 import Animation
-import Components.Msg exposing (..)
+import Components.Messages exposing (..)
 import Components.Model exposing (..)
 
 

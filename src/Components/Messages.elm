@@ -1,4 +1,4 @@
-module Components.Msg exposing (..)
+module Components.Messages exposing (..)
 
 import Animation
 

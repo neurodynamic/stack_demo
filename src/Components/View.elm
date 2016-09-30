@@ -6,7 +6,7 @@ import Html.Events exposing (..)
 import Animation
 import Animation.Messenger
 import Components.Model exposing (Model)
-import Components.Msg exposing (..)
+import Components.Messages exposing (..)
 import Components.Layout.Base exposing (layout)
 
 
@@ -40,6 +40,10 @@ stack : Model -> Html Msg
 stack model =
     div [ class "items" ] ((h3 [] [ text "stack" ]) :: (itemList model))
 
+fadingItem item =
+    case item of
+        Nothing -> text ""
+        Just str -> 
 
 itemList : Model -> List (Html Msg)
 itemList model =
@@ -51,7 +55,7 @@ stringToTopItemDiv : Animation.Messenger.State Msg -> String -> Html Msg
 stringToTopItemDiv topItemStyle str =
     let
         properties =
-            [ class "item top-item" ] ++ Animation.render topItemStyle
+            [ class "item" ] ++ Animation.render topItemStyle
     in
         div properties [ text str ]
 
