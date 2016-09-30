@@ -22,14 +22,7 @@ update msg model =
             ( { model
                 | items = model.inputValue :: model.items
                 , inputValue = ""
-                , topItemStyle =
-                    Animation.styleWith
-                        (Animation.spring
-                            { stiffness = 600
-                            , damping = 35
-                            }
-                        )
-                        (invisible ++ collapsed)
+                , topItemStyle = hiddenStyle
               }
             , fadeInNewItem
             )

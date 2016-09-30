@@ -1,6 +1,26 @@
 module Utils.ItemStyles exposing (..)
 
 import Animation exposing (px)
+import Animation.Messenger
+import Components.Messages exposing (..)
+
+
+hiddenStyle : Animation.Messenger.State Msg
+hiddenStyle =
+    Animation.styleWith springSettings (invisible ++ collapsed)
+
+
+visibleStyle : Animation.Messenger.State Msg
+visibleStyle =
+    Animation.styleWith springSettings (visible ++ expanded)
+
+
+springSettings : Animation.Interpolation
+springSettings =
+    Animation.spring
+        { stiffness = 600
+        , damping = 35
+        }
 
 
 expanded : List Animation.Property
