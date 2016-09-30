@@ -6,7 +6,7 @@ import Animation exposing (px)
 import Animation.Messenger
 import Components.Messages exposing (..)
 import Components.Model exposing (..)
-import Components.ItemStyles exposing (..)
+import Utils.ItemStyles exposing (..)
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )

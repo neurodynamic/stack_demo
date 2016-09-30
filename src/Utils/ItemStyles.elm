@@ -1,4 +1,4 @@
-module Components.ItemStyles exposing (..)
+module Utils.ItemStyles exposing (..)
 
 import Animation exposing (px)
 

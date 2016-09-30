@@ -1,7 +1,7 @@
 module Components.Model exposing (..)
 
 import Components.Messages exposing (..)
-import Components.ItemStyles exposing (..)
+import Utils.ItemStyles exposing (..)
 import Animation exposing (px)
 import Animation.Messenger
 
