@@ -79,17 +79,27 @@ update msg model =
 
 postPush : Cmd Msg
 postPush =
-    Task.perform wtfCrash identity ((focus "push-method") `andThen` (\_ -> Task.succeed FadeInNewItem))
+    performSureThing postPushTasks
+
+
+postPushTasks : Task Dom.Error Msg
+postPushTasks =
+    (focus "push-method") `andThen` (\_ -> Task.succeed FadeInNewItem)
 
 
 fadeOutTopItem : Cmd Msg
 fadeOutTopItem =
-    Task.perform wtfCrash identity (Task.succeed FadeOutTopItem)
+    performSureThing (Task.succeed FadeOutTopItem)
 
 
 removeTopItem : Cmd Msg
 removeTopItem =
-    Task.perform wtfCrash identity (Task.succeed Pop)
+    performSureThing (Task.succeed Pop)
+
+
+performSureThing : Task a Msg -> Cmd Msg
+performSureThing task =
+    Task.perform wtfCrash identity task
 
 
 wtfCrash : a -> b
