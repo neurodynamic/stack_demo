@@ -30,7 +30,7 @@ pushForm : String -> Html Msg
 pushForm inputValue =
     Html.form [ class "method-form", onSubmit Push ]
         [ text "stack.push("
-        , input [ class "method-input", onInput NewInputValue, value inputValue ] []
+        , input [ class "method-input", id "push-method", onInput NewInputValue, value inputValue ] []
         , text ")"
         , button [] [ text "call" ]
         ]

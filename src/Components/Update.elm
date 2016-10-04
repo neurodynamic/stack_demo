@@ -2,6 +2,7 @@ module Components.Update exposing (..)
 
 import List exposing (..)
 import Task exposing (..)
+import Dom exposing (focus)
 import Animation exposing (px)
 import Animation.Messenger
 import Components.Messages exposing (..)
@@ -25,7 +26,7 @@ update msg model =
                 , inputValue = ""
                 , topItemStyle = hiddenStyle
               }
-            , fadeInNewItem
+            , postPush
             )
 
         FadeInNewItem ->
@@ -76,16 +77,21 @@ update msg model =
                 ( { model | topItemStyle = style }, command )
 
 
-fadeInNewItem : Cmd Msg
-fadeInNewItem =
-    Task.perform (\_ -> Debug.crash "This failure cannot happen.") identity (Task.succeed FadeInNewItem)
+postPush : Cmd Msg
+postPush =
+    Task.perform wtfCrash identity ((focus "push-method") `andThen` (\_ -> Task.succeed FadeInNewItem))
 
 
 fadeOutTopItem : Cmd Msg
 fadeOutTopItem =
-    Task.perform (\_ -> Debug.crash "This failure cannot happen.") identity (Task.succeed FadeOutTopItem)
+    Task.perform wtfCrash identity (Task.succeed FadeOutTopItem)
 
 
 removeTopItem : Cmd Msg
 removeTopItem =
-    Task.perform (\_ -> Debug.crash "This failure cannot happen.") identity (Task.succeed Pop)
+    Task.perform wtfCrash identity (Task.succeed Pop)
+
+
+wtfCrash : a -> b
+wtfCrash =
+    \_ -> Debug.crash "This failure shouldn't be possible. WTF is even happening?"
